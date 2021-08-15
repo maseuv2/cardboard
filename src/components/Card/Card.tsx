@@ -6,6 +6,7 @@ import { CardEntity } from '../../data/card'
 import { useOutsideClick } from '../../hooks/useOutsideClick'
 
 import styles from './Card.module.css'
+import { dateFromatter } from '../../utils/dateFormatter'
 
 interface CardProps extends CardEntity {}
 
@@ -29,7 +30,7 @@ export const Card = (props: CardProps) => {
 
   return (
     <div data-cy={`card-${props.id}`} className={styles.card}>
-      <p className={styles.date}>{props?.createdAt || 'Date'}</p>
+      <p className={styles.date}>{dateFromatter(props?.createdAt) || 'Date'}</p>
       {!isEditing ? (
         <p onClick={handleSetEditingOn}>
           {props?.content || 'Click to start noting'}
